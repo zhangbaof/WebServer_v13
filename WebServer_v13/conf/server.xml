@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+	<!-- 配置客户端传输数据的字符集，服务端口等信息 -->
+	<Connector URIEncoding = "utf-8" port = "8088" protocol = "HTTP/1.1"/>
+	<!-- 线程池的线程数 -->
+	<Executor maxThreads = "50"/>
+</server>

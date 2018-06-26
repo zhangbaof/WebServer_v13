@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-apps>
+	<!-- 配置一个Servlet的类名，用于反射 -->
+	<servlet>
+		<servlet-name>RegServlet</servlet-name>
+		<servlet-class>com.tedu.servlet.RegServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.tedu.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateServlet</servlet-name>
+		<servlet-class>com.tedu.servlet.UpdateServlet</servlet-class>
+	</servlet>
+	<!-- mapping用于将请求与Servlet关联 -->
+	<servlet-mapping>
+		<servlet-name>RegServlet</servlet-name>
+		<url-pattern>/web/web/regUser</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/web/web/loginUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateServlet</servlet-name>
+		<url-pattern>/web/web/updateUser</url-pattern>
+	</servlet-mapping>
+</web-apps>
