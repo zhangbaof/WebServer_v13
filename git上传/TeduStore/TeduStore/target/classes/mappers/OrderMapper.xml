@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.store.mapper.OrderMapper">
+	<insert id="addOrder" parameterType="cn.tedu.store.bean.Order"
+	useGeneratedKeys="true" keyProperty="id"
+	>
+		insert into t_order(
+			user_id,
+			recv_person,
+			recv_phone,
+			recv_district,
+			recv_addr,
+			recv_addr_code,
+			price,
+			status,
+			order_time,
+			goods_count
+		) 
+		values(
+			#{userId},
+			#{recvPerson},
+			#{recvPhone},
+			#{recvDistrict},
+			#{recvAddr},
+			#{recvAddrCode},
+			#{price},
+			#{status},
+			#{orderTime},
+			#{goodsCount}
+		)
+	</insert>
+	
+	<select id="selectOrderId" resultType="java.lang.Integer">
+		select id
+			from t_order
+		where
+			user_id=#{userId} 
+	</select>
+	
+	
+	
+
+</mapper>

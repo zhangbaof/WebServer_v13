@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.store.mapper.OrderMapper">
+	<insert id="addOrderItem" parameterType="cn.tedu.store.bean.OrderItem"
+		useGeneratedKeys="true"
+		keyProperty="id"
+	>
+		insert into 
+		t_order_item(
+			order_id,
+			goods_id,
+			goods_title,
+			goods_image,
+			goods_price,
+			num
+		) 
+		values(
+			#{orderId},
+			#{goodsId},
+			#{goodsTitle},
+			#{goodsImage},
+			#{goodsPrice},
+			#{num}
+		)
+	</insert>
+	<select id="showOrderItems" resultType="cn.tedu.store.bean.OrderItem">
+		select 
+			id,
+			order_id orderId,
+			goods_id goodsId,
+			goods_title goodsTitle,
+			goods_image goodsImage,
+			goods_price goodsPrice,
+			num
+		from t_order_item
+		where 	order_id=#{orderId}
+	</select>
+
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.store.mapper.AddressMapper">
+
+
+
+	<insert id="addAddress" useGeneratedKeys="true" keyProperty="id" >
+		insert into
+			t_address
+			(uid,recv_person,recv_province,
+			recv_city,recv_area,recv_district,
+			recv_addr,recv_phone,recv_tel,recv_addr_code,
+			recv_name,is_default)
+		values
+			(
+				#{uid},#{recvPerson},#{recvProvince},
+				#{recvCity},#{recvArea},#{recvDistrict},
+				#{recvAddr},#{recvPhone},#{recvTel},
+				#{recvAddrCode},#{recvName},#{isDefault}
+			)
+	</insert>
+	
+	
+	<select id="getAddressList" resultType="cn.tedu.store.bean.Address">
+		select 
+			id,
+			uid,
+			recv_person recvPerson,
+			recv_province recvProvince,
+			recv_city recvCity,
+			recv_area recvArea,
+			recv_district recvDistrict,
+			recv_addr recvAddr,
+			recv_phone recvPhone,
+			recv_tel recvTel,
+			recv_addr_code recvAddrCode,
+			recv_name recvName,
+			is_default isDefault
+		from 
+			t_address
+		where uid=#{uid}
+	</select>
+	
+	
+	<delete id="delete">
+		delete from t_address where id=#{id} and uid=#{uid}
+	</delete>
+	
+	<select id="getAddressById" resultType="cn.tedu.store.bean.Address">
+		select 
+			id,
+			uid,
+			recv_person recvPerson,
+			recv_province recvProvince,
+			recv_city recvCity,
+			recv_area recvArea,
+			recv_district recvDistrict,
+			recv_addr recvAddr,
+			recv_phone recvPhone,
+			recv_tel recvTel,
+			recv_addr_code recvAddrCode,
+			recv_name recvName,
+			is_default isDefault
+		from t_address
+		where id=#{id}	AND uid=#{uid}
+			
+	</select>
+	
+	<update id="updateAddressById" parameterType="cn.tedu.store.bean.Address">
+		update t_address set
+			recv_person=#{recvPerson},
+			recv_province=#{recvProvince},
+			recv_city=#{recvCity},
+			recv_district=#{recvDistrict},
+			recv_tel=#{recvTel},
+			recv_addr=#{recvAddr},
+			recv_phone=#{recvPhone},
+			recv_addr_code=#{recvAddrCode},
+			recv_name=#{recvName},
+			is_default=#{isDefault}
+		where
+		 	uid=#{uid}
+		 	and id=#{id}
+	</update>
+	
+	<update id="setDefaultAddress">
+		update 
+			t_address
+		set 
+			is_default=1 
+		where 
+			id=#{id} AND uid=#{uid}
+	</update>
+	<update id="cancelAllDefaultAddress">
+		update 
+			t_address
+		set
+			is_default=0
+		where 
+			uid=#{uid}
+	</update>
+	
+	<select id="getFirstRecoreId" resultType="java.lang.Integer">
+		select id from t_address where uid=#{uid} order by id limit 0,1
+	</select>
+	<select id="getRecordCountByUid" resultType="java.lang.Integer">
+		select count(id) from t_address where uid=#{uid}
+	</select>
+	
+	
+	
+
+</mapper>

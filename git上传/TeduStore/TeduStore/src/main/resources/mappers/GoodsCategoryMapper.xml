@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.store.mapper.GoodsCategoryMapper">
+
+
+	<select id="getGoodsCategoryList" resultType="cn.tedu.store.bean.GoodsCategory">
+		select 
+			id,
+			parent_id 		parentId,
+			name,
+			status,
+			sort_order 	sortOrder,
+			is_parent 		 isParent,
+			created_time createTime,
+			modified_time modifiedTime,
+			created_user createdUser,
+			modified_user modifiedUser
+		from t_goods_category
+			limit #{offset},500
+	</select>
+
+		<select id="getGoodsCategoryByParent" resultType="cn.tedu.store.bean.GoodsCategory">
+			SELECT 
+				id,
+				parent_id 		parentId,
+				name,
+				status,
+				sort_order 	sortOrder,
+				is_parent 		 isParent,
+				created_time createTime,
+				modified_time modifiedTime,
+				created_user createdUser,
+				modified_user modifiedUser
+			FROM 
+				t_goods_category
+			WHERE 
+				parent_id=#{parentId} 
+				AND status=1
+			ORDER BY 
+				sort_order
+			<if test="offset!=null">
+			LIMIT 
+				#{offset},#{pageCount}
+			</if>
+	</select>
+	<select id="getGoodsCategoryById" resultType="cn.tedu.store.bean.GoodsCategory">
+			select 
+				id,
+				name,
+				parent_id parentId
+			from t_goods_category
+			where 
+				id=#{id}
+	</select>
+	
+
+</mapper>
